@@ -57,7 +57,7 @@ You must replace `meowmeowmeow` with your personal API key.
 
 # Series
 
-## Get a Specific Serie
+## Get a Specific Series
 
 ```shell
 curl "http://quadrant.io/api/v1/series"
