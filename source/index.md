@@ -263,3 +263,47 @@ curl "http://quadrant.io/api/v1/api_sge_countries"
 
 `GET http://quadrant.io/api/v1/api_sge_countries`
 
+## Countries Groups
+
+```shell
+curl "http://quadrant.io/api/v1/api_sge_countries_groups"
+  -H "Authorization: Bearer <auth_token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "name": "Region",
+        "tags": [
+            "Africa",
+            "Asia",
+            "Australia",
+            "Central America",
+            "Central Europe",
+            "Europe",
+            "Middle East and North Africa",
+            "North America",
+            "Oceania",
+            "Pacific",
+            "South America"
+        ]
+    },
+    {
+        "name": "Economy",
+        "tags": [
+            "Advanced Economies (IMF)",
+            "Developed Market",
+            "Emerging Market",
+            "Frontier Market",
+            "Least Developed Countries (LDC)",
+            "Small and Vulnerable Economies (SVE)"
+        ]
+    }
+]
+```
+
+### HTTP Request
+
+`GET http://quadrant.io/api/v1/api_sge_countries_groups`
