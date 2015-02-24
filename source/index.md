@@ -112,7 +112,7 @@ Remember — a happy kitten is an authenticated kitten!
 
 # SGE
 
-## SgeCategories
+## Categories
 
 ```shell
 curl "http://quadrant.io/api/v1/get_sge_categories/<country_slug>"
@@ -162,3 +162,104 @@ This endpoint retrieves all sge categories.
 Parameter | Description
 --------- | -----------
 COUNTRY_SLUG | ex: united-states
+
+## Category Series
+
+```shell
+curl "http://quadrant.io/api/v1/get_sge_category_series/<category_id>"
+  -H "Authorization: Bearer <auth_token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  [
+    {
+        "last_updated": "Sep 12, 2014",
+        "seasonal_adjustment_full": "NSA",
+        "percent_change": "5.0",
+        "title": "Afghanistan - Sales Tax Rate",
+        "seasonal_adjustment": "N",
+        "calc_begin_date": "2013-01-01",
+        "date_range_begin": "Jan 2014",
+        "date_range_end": "Jan 2014",
+        "series_id": "SGE_AFGSTR",
+        "source": "Afghanistan Revenue Department",
+        "frequency": "D",
+        "frequency_adjustment": "(D, N)",
+        "units": "Percent",
+        "frequency_full": "Daily",
+        "last_value": "5.0",
+        "slug": "afghanistan-sales-tax-rate",
+        "change": "5.0",
+        "release": ""
+    }
+]
+```
+
+### HTTP Request
+
+`GET http://quadrant.io/api/v1/get_sge_category_series/<CATEGORY_ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+CATEGORY_ID | ex: 12355
+
+## Countries
+
+```shell
+curl "http://quadrant.io/api/v1/api_sge_countries"
+  -H "Authorization: Bearer <auth_token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "slug": "afghanistan",
+        "tags": [
+            "Asia",
+            "Asian Development Bank (ADB)",
+            "Executive head of state",
+            "Fragile and conflict affected situations",
+            "Heavily indebted poor countries",
+            "HIPC",
+            "IDA",
+            "International Development Association",
+            "Least Developed Countries (LDC)",
+            "Low income",
+            "Presidential System",
+            "Republic",
+            "South Asia"
+        ],
+        "iso": "AF",
+        "id": 1,
+        "name": "Afghanistan"
+    },
+    {
+        "slug": "albania",
+        "tags": [
+            "Ceremonial head of state",
+            "Europe",
+            "Europe and Central Asia",
+            "IBRD",
+            "International Bank for Reconstruction and Development",
+            "NATO",
+            "Parliamentary republic",
+            "Republic",
+            "Upper middle income"
+        ],
+        "iso": "AL",
+        "id": 2,
+        "name": "Albania"
+    }
+]
+```
+
+### HTTP Request
+
+`GET http://quadrant.io/api/v1/api_sge_countries`
+
