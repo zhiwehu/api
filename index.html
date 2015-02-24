@@ -184,7 +184,7 @@ Remember — a happy kitten is an authenticated kitten!
 
 <h1 id="sge">SGE</h1>
 
-<h2 id=" sgecategories"> SgeCategories</h2>
+<h2 id=" categories"> Categories</h2>
 <pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/get_sge_categories/&lt;country_slug&gt;"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
@@ -240,6 +240,110 @@ Remember — a happy kitten is an authenticated kitten!
 <td>ex: united-states</td>
 </tr>
 </tbody></table>
+
+<h2 id="category-series">Category Series</h2>
+<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/get_sge_category_series/&lt;category_id&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="w">  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sep 12, 2014"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seasonal_adjustment_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"percent_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan - Sales Tax Rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seasonal_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"calc_begin_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 2014"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 2014"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGE_AFGSTR"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan Revenue Department"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(D, N)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daily"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afghanistan-sales-tax-rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"release"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://quadrant.io/api/v1/get_sge_category_series/&lt;CATEGORY_ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CATEGORY_ID</td>
+<td>ex: 12355</td>
+</tr>
+</tbody></table>
+
+<h2 id="countries">Countries</h2>
+<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/api_sge_countries"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afghanistan"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Asia"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Asian Development Bank (ADB)"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Executive head of state"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Fragile and conflict affected situations"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Heavily indebted poor countries"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HIPC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"IDA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"International Development Association"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Least Developed Countries (LDC)"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Low income"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Presidential System"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Republic"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"South Asia"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AF"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"albania"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Ceremonial head of state"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Europe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Europe and Central Asia"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"IBRD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"International Bank for Reconstruction and Development"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"NATO"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Parliamentary republic"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Republic"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Upper middle income"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Albania"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://quadrant.io/api/v1/api_sge_countries</code></p>
 
           <h1 id="errors">Errors</h1>
 
