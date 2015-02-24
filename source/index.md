@@ -101,10 +101,13 @@ ID  | The id of the series record
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Default | Description | Depends
+--------- | ------- | ----------- | -------
+units | False | valid units: 'lin', 'chg', 'ch1', 'pch', 'pc1', 'pca' |
+frequency | False | valid frequencies: "Monthly", "Quarterly", "Semiannual", "Annual" |
+date_range_begin | False | |
+date_range_end | False | |
+aggregate_method | AVG | | frequency
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
