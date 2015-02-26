@@ -5,8 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='mailto:support@quadrant.io'>Sign Up for a Developer Key</a>
 
 includes:
   - errors
@@ -26,7 +25,7 @@ Welcome to the Quadrant API! You can use our API to access Quadrant API endpoint
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: <ACCESS_TOKEN>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 > Make sure to replace `<ACCESS_TOKEN>` with your API key.
@@ -48,7 +47,7 @@ curl -X POST -d "client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=
 
 This access token needs to be passed in every request header:
 
-`Authorization: <ACCESS_TOKEN>`
+`Authorization: Bearer <ACCESS_TOKEN>`
 
 <aside class="notice">
 You must replace `ACCESS_TOKEN` with your personal API key.
