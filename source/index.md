@@ -307,3 +307,106 @@ curl "http://quadrant.io/api/v1/api_sge_countries_groups"
 ### HTTP Request
 
 `GET http://quadrant.io/api/v1/api_sge_countries_groups`
+
+## Country
+
+```shell
+curl "http://quadrant.io/api/v1/country/<country_slug>"
+  -H "Authorization: Bearer <auth_token>"
+```
+
+> The above command returns JSON structured like this:
+
+
+```json
+[
+    {
+        "shortname": "Inflation",
+        "longname": "Inflation",
+        "children": [
+            {
+                "shortname": "Key Indicators",
+                "longname": "Key Indicators",
+                "children": [
+                    {
+                        "series": [],
+                        "shortname": "CPI (YoY)",
+                        "longname": "CPI (YoY)",
+                        "children": [],
+                        "id": 24571
+                    },
+                    {
+                        "series": [
+                            {
+                                "seasonal_adjustment_full": "Not Seasonally Adjusted",
+                                "percent_change": "1.7",
+                                "calc_begin_date": "2013-11-01",
+                                "seasonal_adjustment": "N",
+                                "title": "All items less food and energy (Core CPI)",
+                                "date_range_begin": "Jan 1958",
+                                "date_range_end": "Nov 2014",
+                                "release": "Consumer Price Index",
+                                "series_id": "CUUR0000SA0L1EPCY",
+                                "source": "Bureau of Labor Statistics",
+                                "frequency": "M",
+                                "frequency_adjustment": "(M, N)",
+                                "units": "Percent (YoY)",
+                                "last_updated": "Jan 04, 2015",
+                                "last_value": "1.7",
+                                "slug": "core-cpi-yearly-change",
+                                "change": "1.7",
+                                "frequency_full": "Monthly"
+                            }
+                        ],
+                        "shortname": "Core CPI (YoY)",
+                        "longname": "Core CPI (YoY)",
+                        "children": [],
+                        "id": 24572
+                    },
+                    {
+                        "series": [],
+                        "shortname": "PCE Price Index (PCEPI)",
+                        "longname": "PCE Price Index (PCEPI)",
+                        "children": [],
+                        "id": 24573
+                    },
+                    {
+                        "series": [],
+                        "shortname": "Core PCEPI",
+                        "longname": "Core PCEPI",
+                        "children": [],
+                        "id": 24574
+                    },
+                    {
+                        "series": [],
+                        "shortname": "PPI (YoY)",
+                        "longname": "PPI (YoY)",
+                        "children": [],
+                        "id": 24575
+                    },
+                    {
+                        "series": [],
+                        "shortname": "Core PPI (YoY)",
+                        "longname": "Core PPI (YoY)",
+                        "children": [],
+                        "id": 24576
+                    }
+                ],
+                "id": 24570
+            }
+        ]
+    }
+]
+```
+
+This endpoint retrieves series info from a specified country.
+
+### HTTP Request
+
+`GET http://quadrant.io/api/v1/country/<COUNTRY_SLUG>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+COUNTRY_SLUG | String (ex: united-states)
