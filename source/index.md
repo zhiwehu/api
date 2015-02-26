@@ -26,19 +26,32 @@ Welcome to the Quadrant API! You can use our API to access Quadrant API endpoint
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: <ACCESS_TOKEN>"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `<ACCESS_TOKEN>` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Quadrant uses API keys to allow access to the API. As is being developed, you can ask for keys to our support team, the required data is a valid user, and the URL of your site (the site that's gone to make the api requests).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+The support team will provide a client_id and client_secret, this data is required to retrieve an auth token.
 
-`Authorization: meowmeowmeow`
+```shell
+# To request ACCESS_TOKEN
+curl -X POST -d "client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=password&username=<USERNAME>&password=<PASSWORD>" http://quadrant.io/oauth2/access_token/
+```
+
+> Returns json string with ACCESS_TOKEN
+
+```json
+{"access_token": "a8b0b79e57e30943b766e1706797012dc4fba3e2", "token_type": "Bearer", "expires_in": 2591999, "scope": "read"}
+```
+
+This access token needs to be passed in every request header:
+
+`Authorization: <ACCESS_TOKEN>`
 
 <aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+You must replace `ACCESS_TOKEN` with your personal API key.
 </aside>
 
 # Series
