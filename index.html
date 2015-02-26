@@ -37,8 +37,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='mailto:support@quadrant.io'>Sign Up for a Developer Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -55,21 +54,32 @@
 </blockquote>
 <pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;ACCESS_TOKEN&gt;"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">&lt;ACCESS_TOKEN&gt;</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Quadrant uses API keys to allow access to the API. As is being developed, you can ask for keys to our support team, the required data is a valid user, and the URL of your site (the site that&rsquo;s gone to make the api requests).</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>The support team will provide a client_id and client_secret, this data is required to retrieve an auth token.</p>
+<pre><code class="highlight shell"><span class="c"># To request ACCESS_TOKEN</span>
+curl -X POST -d <span class="s2">"client_id=&lt;CLIENT_ID&gt;&amp;client_secret=&lt;CLIENT_SECRET&gt;&amp;grant_type=password&amp;username=&lt;USERNAME&gt;&amp;password=&lt;PASSWORD&gt;"</span> http://quadrant.io/oauth2/access_token/
+</code></pre>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<blockquote>
+<p>Returns json string with ACCESS_TOKEN</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a8b0b79e57e30943b766e1706797012dc4fba3e2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">2591999</span><span class="p">,</span><span class="w"> </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This access token needs to be passed in every request header:</p>
+
+<p><code class="prettyprint">Authorization: Bearer &lt;ACCESS_TOKEN&gt;</code></p>
 
 <aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+You must replace `ACCESS_TOKEN` with your personal API key.
 </aside>
 
 <h1 id="series">Series</h1>
@@ -387,6 +397,114 @@ Remember — a happy kitten is an authenticated kitten!
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET http://quadrant.io/api/v1/api_sge_countries_groups</code></p>
+
+<h2 id="country">Country</h2>
+<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/country/&lt;country_slug&gt;"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inflation"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inflation"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Key Indicators"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Key Indicators"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24571</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"seasonal_adjustment_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Seasonally Adjusted"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"percent_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"calc_begin_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-11-01"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"seasonal_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All items less food and energy (Core CPI)"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 1958"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nov 2014"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"release"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Consumer Price Index"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUUR0000SA0L1EPCY"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bureau of Labor Statistics"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"frequency_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(M, N)"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent (YoY)"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 04, 2015"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"last_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"core-cpi-yearly-change"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"frequency_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core CPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core CPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24572</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PCE Price Index (PCEPI)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PCE Price Index (PCEPI)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24573</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PCEPI"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PCEPI"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24574</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24575</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PPI (YoY)"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24576</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24570</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves series info from a specified country.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://quadrant.io/api/v1/country/&lt;COUNTRY_SLUG&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>COUNTRY_SLUG</td>
+<td>String (ex: united-states)</td>
+</tr>
+</tbody></table>
 
           <h1 id="errors">Errors</h1>
 
