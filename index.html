@@ -65,7 +65,7 @@ curl <span class="s2">"api_endpoint_here"</span>
 
 <p>The support team will provide a client_id and client_secret, this data is required to retrieve an auth token.</p>
 <pre><code class="highlight shell"><span class="c"># To request ACCESS_TOKEN</span>
-curl -X POST -d <span class="s2">"client_id=&lt;CLIENT_ID&gt;&amp;client_secret=&lt;CLIENT_SECRET&gt;&amp;grant_type=password&amp;username=&lt;USERNAME&gt;&amp;password=&lt;PASSWORD&gt;"</span> http://quadrant.io/oauth2/access_token/
+curl -X POST -d <span class="s2">"client_id=&lt;CLIENT_ID&gt;&amp;client_secret=&lt;CLIENT_SECRET&gt;&amp;grant_type=password&amp;username=&lt;USERNAME&gt;&amp;password=&lt;PASSWORD&gt;"</span> https://quadrant.io/oauth2/access_token/
 </code></pre>
 
 <blockquote>
@@ -85,7 +85,7 @@ You must replace `ACCESS_TOKEN` with your personal API key.
 <h1 id="series">Series</h1>
 
 <h2 id="get-a-specific-series">Get a Specific Series</h2>
-<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/series/&lt;slug or id&gt;"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/series/&lt;slug or id&gt;"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
 
@@ -125,8 +125,8 @@ You must replace `ACCESS_TOKEN` with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://quadrant.io/api/v1/series/&lt;SLUG&gt;</code>
-<code class="prettyprint">GET http://quadrant.io/api/v1/series/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/series/&lt;SLUG&gt;</code>
+<code class="prettyprint">GET https://quadrant.io/api/v1/series/&lt;ID&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -195,7 +195,7 @@ Remember — a happy kitten is an authenticated kitten!
 <h1 id="sge">SGE</h1>
 
 <h2 id=" categories"> Categories</h2>
-<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/get_sge_categories/&lt;country_slug&gt;"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/get_sge_categories/&lt;country_slug&gt;"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
 
@@ -235,7 +235,7 @@ Remember — a happy kitten is an authenticated kitten!
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://quadrant.io/api/v1/get_sge_categories/&lt;COUNTRY_SLUG&gt;</code></p>
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/get_sge_categories/&lt;COUNTRY_SLUG&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -252,7 +252,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tbody></table>
 
 <h2 id="category-series">Category Series</h2>
-<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/get_sge_category_series/&lt;category_id&gt;"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/get_sge_category_series/&lt;category_id&gt;"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
 
@@ -285,7 +285,7 @@ Remember — a happy kitten is an authenticated kitten!
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://quadrant.io/api/v1/get_sge_category_series/&lt;CATEGORY_ID&gt;</code></p>
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/get_sge_category_series/&lt;CATEGORY_ID&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -302,7 +302,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tbody></table>
 
 <h2 id="countries">Countries</h2>
-<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/api_sge_countries"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/api_sge_countries"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
 
@@ -353,10 +353,10 @@ Remember — a happy kitten is an authenticated kitten!
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://quadrant.io/api/v1/api_sge_countries</code></p>
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/api_sge_countries</code></p>
 
 <h2 id=" countries-groups"> Countries Groups</h2>
-<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/api_sge_countries_groups"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/api_sge_countries_groups"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
 
@@ -396,10 +396,10 @@ Remember — a happy kitten is an authenticated kitten!
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://quadrant.io/api/v1/api_sge_countries_groups</code></p>
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/api_sge_countries_groups</code></p>
 
 <h2 id="country">Country</h2>
-<pre><code class="highlight shell">curl <span class="s2">"http://quadrant.io/api/v1/country/&lt;country_slug&gt;"</span>
+<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/country/&lt;country_slug&gt;"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
 
@@ -490,7 +490,7 @@ Remember — a happy kitten is an authenticated kitten!
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://quadrant.io/api/v1/country/&lt;COUNTRY_SLUG&gt;</code></p>
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/country/&lt;COUNTRY_SLUG&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
