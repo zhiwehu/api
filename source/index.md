@@ -36,7 +36,7 @@ The support team will provide a client_id and client_secret, this data is requir
 
 ```shell
 # To request ACCESS_TOKEN
-curl -X POST -d "client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=password&username=<USERNAME>&password=<PASSWORD>" http://quadrant.io/oauth2/access_token/
+curl -X POST -d "client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=password&username=<USERNAME>&password=<PASSWORD>" https://quadrant.io/oauth2/access_token/
 ```
 
 > Returns json string with ACCESS_TOKEN
@@ -58,7 +58,7 @@ You must replace `ACCESS_TOKEN` with your personal API key.
 ## Get a Specific Series
 
 ```shell
-curl "http://quadrant.io/api/v1/series/<slug or id>"
+curl "https://quadrant.io/api/v1/series/<slug or id>"
   -H "Authorization: Bearer <auth_token>"
 ```
 
@@ -98,8 +98,8 @@ This endpoint retrieves all series.
 
 ### HTTP Request
 
-`GET http://quadrant.io/api/v1/series/<SLUG>`
-`GET http://quadrant.io/api/v1/series/<ID>`
+`GET https://quadrant.io/api/v1/series/<SLUG>`
+`GET https://quadrant.io/api/v1/series/<ID>`
 
 ### URL Parameters
 
@@ -127,7 +127,7 @@ Remember — a happy kitten is an authenticated kitten!
 ## Categories
 
 ```shell
-curl "http://quadrant.io/api/v1/get_sge_categories/<country_slug>"
+curl "https://quadrant.io/api/v1/get_sge_categories/<country_slug>"
   -H "Authorization: Bearer <auth_token>"
 ```
 
@@ -167,7 +167,7 @@ This endpoint retrieves all sge categories.
 
 ### HTTP Request
 
-`GET http://quadrant.io/api/v1/get_sge_categories/<COUNTRY_SLUG>`
+`GET https://quadrant.io/api/v1/get_sge_categories/<COUNTRY_SLUG>`
 
 ### URL Parameters
 
@@ -178,7 +178,7 @@ COUNTRY_SLUG | ex: united-states
 ## Category Series
 
 ```shell
-curl "http://quadrant.io/api/v1/get_sge_category_series/<category_id>"
+curl "https://quadrant.io/api/v1/get_sge_category_series/<category_id>"
   -H "Authorization: Bearer <auth_token>"
 ```
 
@@ -211,7 +211,7 @@ curl "http://quadrant.io/api/v1/get_sge_category_series/<category_id>"
 
 ### HTTP Request
 
-`GET http://quadrant.io/api/v1/get_sge_category_series/<CATEGORY_ID>`
+`GET https://quadrant.io/api/v1/get_sge_category_series/<CATEGORY_ID>`
 
 ### URL Parameters
 
@@ -222,7 +222,7 @@ CATEGORY_ID | ex: 12355
 ## Countries
 
 ```shell
-curl "http://quadrant.io/api/v1/api_sge_countries"
+curl "https://quadrant.io/api/v1/api_sge_countries"
   -H "Authorization: Bearer <auth_token>"
 ```
 
@@ -273,12 +273,12 @@ curl "http://quadrant.io/api/v1/api_sge_countries"
 
 ### HTTP Request
 
-`GET http://quadrant.io/api/v1/api_sge_countries`
+`GET https://quadrant.io/api/v1/api_sge_countries`
 
 ## Countries Groups
 
 ```shell
-curl "http://quadrant.io/api/v1/api_sge_countries_groups"
+curl "https://quadrant.io/api/v1/api_sge_countries_groups"
   -H "Authorization: Bearer <auth_token>"
 ```
 
@@ -318,12 +318,12 @@ curl "http://quadrant.io/api/v1/api_sge_countries_groups"
 
 ### HTTP Request
 
-`GET http://quadrant.io/api/v1/api_sge_countries_groups`
+`GET https://quadrant.io/api/v1/api_sge_countries_groups`
 
 ## Country
 
 ```shell
-curl "http://quadrant.io/api/v1/country/<country_slug>"
+curl "https://quadrant.io/api/v1/country/<country_slug>"
   -H "Authorization: Bearer <auth_token>"
 ```
 
@@ -415,7 +415,7 @@ This endpoint retrieves series info from a specified country.
 
 ### HTTP Request
 
-`GET http://quadrant.io/api/v1/country/<COUNTRY_SLUG>`
+`GET https://quadrant.io/api/v1/country/<COUNTRY_SLUG>`
 
 ### URL Parameters
 
