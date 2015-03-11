@@ -133,23 +133,24 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=
 
 ```
 
-Parameter | Default | Description | Requires
+Parameter | Default | Options | Requires
 --------- | ------- | ----------- | -------
-**units** | base units of series | valid units: | 
- | | *chg* - Change from one period prior (one period difference) | 
+**units** | base units of series | *chg* - Change from one period prior (one period difference) | 
  | | *ch1* - Change from same period one year ago (one year difference) | 
  | | *pch* - Percent change from one period prior | 
  | | *pc1* - Percent change from same period one year ago | 
  | | *pca* - Annualized percent change from one period prior |
-**date_range_begin** | first available data point | *yyyy-mm-dd* | 
-**date_range_end** | last available datapoint | *yyyy-mm-dd* |  
-**frequency** | base frequency of series | valid frequencies: |
- | | *Monthly*  | 
+|  |  | 
+**date_range_begin** | first available data point | *yyyy-mm-dd* |
+|  |  | 
+**date_range_end** | last available datapoint | *yyyy-mm-dd* | 
+|  |  | 
+**frequency** | base frequency of series | *Monthly* |
  | | *Quarterly* | 
  | | *Semiannual* |
  | | *Annual* |
-**aggregate_method** | AVG | valid methods: | **frequency**
- | | *AVG* - Average | 
+|  |  | 
+**aggregate_method** | AVG | *AVG* - Average | **frequency**
  | | *SUM* - Sum | 
  | | *EOP* - End of Period | 
 
@@ -177,7 +178,7 @@ Remember to authenticate!
       "date": "1958-02-01",
       "value": 3.16
     }
-  ],
+  ]
 }
 ```
 
@@ -211,6 +212,7 @@ frequency | How often data is measured (examples: daily, weekly, monthly)
 date_range_begin | Date of first observation (period measured, not release date)
 date_range_end | Date of last observation (period measured, not release date)
 
+<!--
 # SGE
 
 ## Categories
@@ -511,3 +513,4 @@ This endpoint retrieves series info from a specified country.
 Parameter | Description
 --------- | -----------
 COUNTRY_SLUG | String (ex: united-states)
+-->
