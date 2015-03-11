@@ -118,7 +118,7 @@ curl "https://quadrant.io/api/v1/series/<slug or id>"
 }
 ```
 
-This endpoint retrieves all series.
+This endpoint retrieves the full time series (full historical data) for an indicator.
 
 ### HTTP Request
 
@@ -129,21 +129,54 @@ This endpoint retrieves all series.
 
 Parameter | Description
 --------- | -----------
-SLUG | The series Slug
-ID  | The id of the series record
+SLUG | The series slug (example: civilian-unemployment-rate) 
+ID  | The ID of the series record (example: LNS14000000)
 
 ### Query Parameters
 
-Parameter | Default | Description | Depends
+> Query Parameter Examples
+
+```shell
+# Standard request: retrieves the full time series
+GET https://quadrant.io/api/v1/series/LNS14000000
+
+# Perform unit transformation on time series 
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=pch
+
+# Select begin and end date for time series
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&date_range_begin=2009-01-01&date_range_end=2010-12-01
+
+# Change frequency to Annual, aggregate data using the average method
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&frequency=Annual&aggregate_method=AVG
+
+```
+
+> Query Multiple Parameters Example
+
+```shell
+# Perform unit transformation, set date range, aggregate on quarterly basis using end of period (EOP) observations
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=pc1&date_range_begin=2010-01-01&date_range_end=2014-12-01&frequency=Quarterly&aggregate_method=SUM
+
+```
+
+Parameter | Default | Description | Requires
 --------- | ------- | ----------- | -------
-units | False | valid units: 'lin', 'chg', 'ch1', 'pch', 'pc1', 'pca' |
-frequency | False | valid frequencies: "Monthly", "Quarterly", "Semiannual", "Annual" |
-date_range_begin | False | |
-date_range_end | False | |
-aggregate_method | AVG | | frequency
+units | base units of series | **valid units:**  | 
+||**chg** Change from one period prior (one period difference) | 
+||**ch1** Change from same period one year ago (one year difference) | 
+||**pch** Percent change from one period prior | 
+||**pc1** Percent change from same period one year ago | 
+||**pca** Annualized percent change from one period prior |
+date_range_begin | first available data point |yyyy-mm-dd format | 
+date_range_end | last available datapoint | yyyy-mm-dd format |  
+frequency | base frequency of series | valid frequencies: "Monthly", "Quarterly", "Semiannual", "Annual" | 
+aggregate_method | AVG | **valid units:** 'AVG', 'SUM', 'EOP' | frequency
+ ||**AVG** Average | 
+ ||**SUM** Sum | 
+ ||**EOP** End of Period | 
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember to authenticate!
 </aside>
 
 # SGE
