@@ -15,15 +15,17 @@ search: true
 
 # Introduction
 
-Welcome to the Quadrant API. Access our entire database of global economic indicators. The Quadrant API is organized around REST.
-
-`Endpoint: https://quadrant.io/api/v1/series/`
-
 > Endpoint
 
 ```shell
 https://quadrant.io/api/v1/series/
 ```
+
+Welcome to the Quadrant API. Access our entire database of global economic indicators. The Quadrant API is organized around REST.
+
+`Endpoint: https://quadrant.io/api/v1/series/`
+
+
 
 > Example Request
 
@@ -42,16 +44,17 @@ GET https://quadrant.io/api/v1/series/LNS14000000
 
 # Authentication
 
-You will first need to provide your credentials to Quadrant by emailing <a href='mailto:hello@quadrant.io'>hello@quadrant.io</a>. Please provide your quadrant user ID or email and the URL of the site that will be making the api requests.
-
-We will provide a client_id and client_secret, this data is required to retrieve an access_token.
-
 > To request an access token:
 
 ```shell
 # To request ACCESS_TOKEN
 curl -X POST -d "client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=password&username=<USERNAME>&password=<PASSWORD>" https://quadrant.io/oauth2/access_token/
 ```
+
+You will first need to provide your credentials to Quadrant by emailing <a href='mailto:hello@quadrant.io'>hello@quadrant.io</a>. Please provide your quadrant user ID or email and the URL of the site that will be making the api requests.
+
+We will provide a client_id and client_secret, this data is required to retrieve an access_token.
+
 
 > Returns json string with ACCESS_TOKEN
 
@@ -77,60 +80,31 @@ You must replace `ACCESS_TOKEN` with your personal token.
 
 All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.
 
-# Series
+# Get Data
 
-## Get a Specific Series
+## Series endpoint
+
+> Get data using the **series** endpoint
 
 ```shell
 curl "https://quadrant.io/api/v1/series/<slug or id>"
   -H "Authorization: Bearer <auth_token>"
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-{
-  "series_id": "CUUR0000SA0L1EPCY",
-  "title": "All items less food and energy (Core CPI)",
-  "slug": "core-cpi-yearly-change",
-  "units": "Percent (YoY)",
-  "frequency": "Monthly",
-  "date_range_begin": "1958-01-01",
-  "date_range_end": "2014-11-01",
-  "series_data_list": [
-    {
-      "date": "1958-01-01",
-      "value": 3.16
-    },
-    {
-      "date": "1958-02-01",
-      "value": 3.16
-    }
-  ],
-  "allow_frequency_list": [
-    "Monthly",
-    "Quarterly",
-    "Semiannual",
-    "Annual"
-  ],
-  "aggregate_method": "AVG",
-  "last_updated": "2015-01-04T14:30:00Z"
-}
-```
-
-This endpoint retrieves the full time series (full historical data) for an indicator.
+The **series** endpoint retrieves the full time series (full historical data) for an indicator.
 
 ### HTTP Request
 
-`GET https://quadrant.io/api/v1/series/<SLUG>`
+`GET https://quadrant.io/api/v1/series/<SLUG>` or 
+
 `GET https://quadrant.io/api/v1/series/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-SLUG | The series slug (example: civilian-unemployment-rate) 
-ID  | The ID of the series record (example: LNS14000000)
+SLUG | The series slug 
+ID  | The ID of the series record
 
 ### Query Parameters
 
@@ -154,30 +128,87 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&freque
 > Query Multiple Parameters Example
 
 ```shell
-# Perform unit transformation, set date range, aggregate on quarterly basis using end of period (EOP) observations
+# Perform unit transformation, set date range begin and end, aggregate on quarterly basis using end of period (EOP) method
 GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=pc1&date_range_begin=2010-01-01&date_range_end=2014-12-01&frequency=Quarterly&aggregate_method=SUM
 
 ```
 
 Parameter | Default | Description | Requires
 --------- | ------- | ----------- | -------
-units | base units of series | **valid units:** | 
- | | **chg** Change from one period prior (one period difference) | 
- | | **ch1** Change from same period one year ago (one year difference) | 
- | | **pch** Percent change from one period prior | 
- | | **pc1** Percent change from same period one year ago | 
- | | **pca** Annualized percent change from one period prior |
-date_range_begin | first available data point | yyyy-mm-dd format | 
-date_range_end | last available datapoint | yyyy-mm-dd format |  
-frequency | base frequency of series | valid frequencies: "Monthly", "Quarterly", "Semiannual", "Annual" | 
-aggregate_method | AVG | **valid units:** | frequency
- | | **AVG** Average | 
- | | **SUM** Sum | 
- | | **EOP** End of Period | 
+**units** | base units of series | valid units: | 
+ | | *chg* - Change from one period prior (one period difference) | 
+ | | *ch1* - Change from same period one year ago (one year difference) | 
+ | | *pch* - Percent change from one period prior | 
+ | | *pc1* - Percent change from same period one year ago | 
+ | | *pca* - Annualized percent change from one period prior |
+**date_range_begin** | first available data point | *yyyy-mm-dd* | 
+**date_range_end** | last available datapoint | *yyyy-mm-dd* |  
+**frequency** | base frequency of series | valid frequencies: |
+ | | *Monthly*  | 
+ | | *Quarterly* | 
+ | | *Semiannual* |
+ | | *Annual* |
+**aggregate_method** | AVG | valid methods: | **frequency**
+ | | *AVG* - Average | 
+ | | *SUM* - Sum | 
+ | | *EOP* - End of Period | 
 
 <aside class="success">
 Remember to authenticate!
 </aside>
+
+> The above commands return JSON structured like this:
+
+```json
+{
+  "series_id": "CUUR0000SA0L1EPCY",
+  "title": "All items less food and energy (Core CPI)",
+  "slug": "core-cpi-yearly-change",
+  "units": "Percent (YoY)",
+  "frequency": "Monthly",
+  "date_range_begin": "1958-01-01",
+  "date_range_end": "2014-11-01",
+  "series_data_list": [
+    {
+      "date": "1958-01-01",
+      "value": 3.16
+    },
+    {
+      "date": "1958-02-01",
+      "value": 3.16
+    }
+  ],
+}
+```
+
+# Metadata
+## Series attributes
+
+> Series attributes
+
+```json
+{
+  "series_id": "CUUR0000SA0L1EPCY",
+  "title": "All items less food and energy (Core CPI)",
+  "slug": "core-cpi-yearly-change",
+  "units": "Percent (YoY)",
+  "frequency": "Monthly",
+  "date_range_begin": "1958-01-01",
+  "date_range_end": "2014-11-01",
+}
+```
+
+Seven series attributes are included for any series retrieved using the **series** endpoint. 
+
+Attribute | Description 
+--------- | ----------- 
+series_id | Unique identifier code
+title | The name of a series
+slug | Exact web address for a series (quadrant.io/data/<slug>)
+units | Unit of measurement (examples: Billiions of dollars, Percent)
+frequency | How often data is measured (examples: daily, weekly, monthly)
+date_range_begin | Date of first observation (period measured, not release date)
+date_range_end | Date of last observation (period measured, not release date)
 
 # SGE
 
