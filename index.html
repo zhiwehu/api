@@ -37,7 +37,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='mailto:support@quadrant.io'>Sign Up for a Developer Key</a></li>
+            <li><a href='mailto:hello@quadrant.io'>Sign Up for a Developer Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -45,25 +45,40 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Quadrant API! You can use our API to access Quadrant API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Quadrant API. Access our entire database of global economic indicators. The Quadrant API is organized around REST.</p>
 
-<h1 id="authentication">Authentication</h1>
+<p><code class="prettyprint">Endpoint: https://quadrant.io/api/v1/series/</code></p>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Endpoint</p>
 </blockquote>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;ACCESS_TOKEN&gt;"</span>
+<pre><code class="highlight shell">https://quadrant.io/api/v1/series/
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">&lt;ACCESS_TOKEN&gt;</code> with your API key.</p>
+<p>Example Request</p>
 </blockquote>
+<pre><code class="highlight shell"><span class="c"># Request a data series using the unique SLUG or ID for that series</span>
+GET https://quadrant.io/api/v1/series/&lt;SLUG&gt;
+GET https://quadrant.io/api/v1/series/&lt;ID&gt;
+<span class="c"># Example Series: US Unemployment Rate (https://www.quadrant.io/data/civilian-unemployment-rate)</span>
+<span class="c"># slug: civilian-unemployment-rate</span>
+GET https://quadrant.io/api/v1/series/civilian-unemployment-rate
+<span class="c"># id: LNS14000000</span>
+GET https://quadrant.io/api/v1/series/LNS14000000
+<span class="c"># For a particular series, a request using the SLUG or ID receives an identical response </span>
 
-<p>Quadrant uses API keys to allow access to the API. As is being developed, you can ask for keys to our support team, the required data is a valid user, and the URL of your site (the site that&rsquo;s gone to make the api requests).</p>
+</code></pre>
 
-<p>The support team will provide a client_id and client_secret, this data is required to retrieve an auth token.</p>
+<h1 id="authentication">Authentication</h1>
+
+<p>You will first need to provide your credentials to Quadrant by emailing <a href='mailto:hello@quadrant.io'>hello@quadrant.io</a>. Please provide your quadrant user ID or email and the URL of the site that will be making the api requests.</p>
+
+<p>We will provide a client_id and client_secret, this data is required to retrieve an access_token.</p>
+
+<blockquote>
+<p>To request an access token:</p>
+</blockquote>
 <pre><code class="highlight shell"><span class="c"># To request ACCESS_TOKEN</span>
 curl -X POST -d <span class="s2">"client_id=&lt;CLIENT_ID&gt;&amp;client_secret=&lt;CLIENT_SECRET&gt;&amp;grant_type=password&amp;username=&lt;USERNAME&gt;&amp;password=&lt;PASSWORD&gt;"</span> https://quadrant.io/oauth2/access_token/
 </code></pre>
@@ -74,13 +89,23 @@ curl -X POST -d <span class="s2">"client_id=&lt;CLIENT_ID&gt;&amp;client_secret=
 <pre><code class="highlight json"><span class="p">{</span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a8b0b79e57e30943b766e1706797012dc4fba3e2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">2591999</span><span class="p">,</span><span class="w"> </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>To authenticate (replace <code class="prettyprint">&lt;ACCESS_TOKEN&gt;</code> with your personal token.)</p>
+</blockquote>
+<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;ACCESS_TOKEN&gt;"</span>
+</code></pre>
+
 <p>This access token needs to be passed in every request header:</p>
 
 <p><code class="prettyprint">Authorization: Bearer &lt;ACCESS_TOKEN&gt;</code></p>
 
 <aside class="notice">
-You must replace `ACCESS_TOKEN` with your personal API key.
+You must replace `ACCESS_TOKEN` with your personal token.
 </aside>
+
+<p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.</p>
 
 <h1 id="series">Series</h1>
 
