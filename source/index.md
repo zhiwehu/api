@@ -25,7 +25,7 @@ Welcome to the Quadrant API. Access our entire database of global economic indic
 
 `Endpoint: https://quadrant.io/api/v1/series/`
 
-
+For help, please contact <a href='mailto:hello@quadrant.io'>hello@quadrant.io</a>
 
 > Example Request
 
