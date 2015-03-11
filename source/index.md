@@ -161,19 +161,19 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=
 
 Parameter | Default | Description | Requires
 --------- | ------- | ----------- | -------
-units | base units of series | **valid units:**  | 
-||**chg** Change from one period prior (one period difference) | 
-||**ch1** Change from same period one year ago (one year difference) | 
-||**pch** Percent change from one period prior | 
-||**pc1** Percent change from same period one year ago | 
-||**pca** Annualized percent change from one period prior |
-date_range_begin | first available data point |yyyy-mm-dd format | 
+units | base units of series | **valid units:** | 
+ | | **chg** Change from one period prior (one period difference) | 
+ | | **ch1** Change from same period one year ago (one year difference) | 
+ | | **pch** Percent change from one period prior | 
+ | | **pc1** Percent change from same period one year ago | 
+ | | **pca** Annualized percent change from one period prior |
+date_range_begin | first available data point | yyyy-mm-dd format | 
 date_range_end | last available datapoint | yyyy-mm-dd format |  
 frequency | base frequency of series | valid frequencies: "Monthly", "Quarterly", "Semiannual", "Annual" | 
-aggregate_method | AVG | **valid units:** 'AVG', 'SUM', 'EOP' | frequency
- ||**AVG** Average | 
- ||**SUM** Sum | 
- ||**EOP** End of Period | 
+aggregate_method | AVG | **valid units:** | frequency
+ | | **AVG** Average | 
+ | | **SUM** Sum | 
+ | | **EOP** End of Period | 
 
 <aside class="success">
 Remember to authenticate!
