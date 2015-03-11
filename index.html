@@ -146,7 +146,7 @@ You must replace `ACCESS_TOKEN` with your personal token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all series.</p>
+<p>This endpoint retrieves the full time series (full historical data) for an indicator.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -163,58 +163,131 @@ You must replace `ACCESS_TOKEN` with your personal token.
 </thead><tbody>
 <tr>
 <td>SLUG</td>
-<td>The series Slug</td>
+<td>The series slug (example: civilian-unemployment-rate)</td>
 </tr>
 <tr>
 <td>ID</td>
-<td>The id of the series record</td>
+<td>The ID of the series record (example: LNS14000000)</td>
 </tr>
 </tbody></table>
 
 <h3 id="query-parameters">Query Parameters</h3>
+
+<blockquote>
+<p>Query Parameter Examples</p>
+</blockquote>
+<pre><code class="highlight shell"><span class="c"># Standard request: retrieves the full time series</span>
+GET https://quadrant.io/api/v1/series/LNS14000000
+
+<span class="c"># Perform unit transformation on time series </span>
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class="o">=</span>json&amp;units<span class="o">=</span>pch
+
+<span class="c"># Select begin and end date for time series</span>
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class="o">=</span>json&amp;date_range_begin<span class="o">=</span>2009-01-01&amp;date_range_end<span class="o">=</span>2010-12-01
+
+<span class="c"># Change frequency to Annual, aggregate data using the average method</span>
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class="o">=</span>json&amp;frequency<span class="o">=</span>Annual&amp;aggregate_method<span class="o">=</span>AVG
+
+</code></pre>
+
+<blockquote>
+<p>Query Multiple Parameters Example</p>
+</blockquote>
+<pre><code class="highlight shell"><span class="c"># Perform unit transformation, set date range, aggregate on quarterly basis using end of period (EOP) observations</span>
+GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class="o">=</span>json&amp;units<span class="o">=</span>pc1&amp;date_range_begin<span class="o">=</span>2010-01-01&amp;date_range_end<span class="o">=</span>2014-12-01&amp;frequency<span class="o">=</span>Quarterly&amp;aggregate_method<span class="o">=</span>SUM
+
+</code></pre>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Default</th>
 <th>Description</th>
-<th>Depends</th>
+<th>Requires</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>units</td>
-<td>False</td>
-<td>valid units: &lsquo;lin&rsquo;, &#39;chg&rsquo;, &#39;ch1&rsquo;, &#39;pch&rsquo;, &#39;pc1&rsquo;, &#39;pca&rsquo;</td>
+<td>base units of series</td>
+<td><strong>valid units:</strong></td>
 <td></td>
 </tr>
 <tr>
-<td>frequency</td>
-<td>False</td>
-<td>valid frequencies: &ldquo;Monthly&rdquo;, &ldquo;Quarterly&rdquo;, &ldquo;Semiannual&rdquo;, &ldquo;Annual&rdquo;</td>
+<td></td>
+<td></td>
+<td><strong>chg</strong> Change from one period prior (one period difference)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>ch1</strong> Change from same period one year ago (one year difference)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>pch</strong> Percent change from one period prior</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>pc1</strong> Percent change from same period one year ago</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>pca</strong> Annualized percent change from one period prior</td>
 <td></td>
 </tr>
 <tr>
 <td>date_range_begin</td>
-<td>False</td>
-<td></td>
+<td>first available data point</td>
+<td>yyyy-mm-dd format</td>
 <td></td>
 </tr>
 <tr>
 <td>date_range_end</td>
-<td>False</td>
+<td>last available datapoint</td>
+<td>yyyy-mm-dd format</td>
 <td></td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>base frequency of series</td>
+<td>valid frequencies: &ldquo;Monthly&rdquo;, &ldquo;Quarterly&rdquo;, &ldquo;Semiannual&rdquo;, &ldquo;Annual&rdquo;</td>
 <td></td>
 </tr>
 <tr>
 <td>aggregate_method</td>
 <td>AVG</td>
-<td></td>
+<td><strong>valid units:</strong></td>
 <td>frequency</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>AVG</strong> Average</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>SUM</strong> Sum</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>EOP</strong> End of Period</td>
+<td></td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember to authenticate!
 </aside>
 
 <h1 id="sge">SGE</h1>
