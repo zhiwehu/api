@@ -194,8 +194,9 @@ Remember to authenticate!
   "units": "Percent (YoY)",
   "frequency": "Monthly",
   "date_range_begin": "1958-01-01",
-  "date_range_end": "2014-11-01",
+  "date_range_end": "2014-11-01"
 }
+
 ```
 
 Seven series attributes are included for any series retrieved using the **series** endpoint. 
