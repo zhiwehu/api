@@ -204,7 +204,7 @@ Attribute | Description
 --------- | ----------- 
 series_id | Unique identifier code
 title | The name of a series
-slug | Exact web address for a series (quadrant.io/data/<slug>)
+slug | Exact web address for a series (quadrant.io/data/*slug*)
 units | Unit of measurement (examples: Billiions of dollars, Percent)
 frequency | How often data is measured (examples: daily, weekly, monthly)
 date_range_begin | Date of first observation (period measured, not release date)
