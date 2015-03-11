@@ -45,15 +45,17 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Quadrant API. Access our entire database of global economic indicators. The Quadrant API is organized around REST.</p>
-
-<p><code class="prettyprint">Endpoint: https://quadrant.io/api/v1/series/</code></p>
-
 <blockquote>
 <p>Endpoint</p>
 </blockquote>
 <pre><code class="highlight shell">https://quadrant.io/api/v1/series/
 </code></pre>
+
+<p>Welcome to the Quadrant API. Access our entire database of global economic indicators. The Quadrant API is organized around REST.</p>
+
+<p><code class="prettyprint">Endpoint: https://quadrant.io/api/v1/series/</code></p>
+
+<p>For help, please contact <a href='mailto:hello@quadrant.io'>hello@quadrant.io</a></p>
 
 <blockquote>
 <p>Example Request</p>
@@ -72,16 +74,16 @@ GET https://quadrant.io/api/v1/series/LNS14000000
 
 <h1 id="authentication">Authentication</h1>
 
-<p>You will first need to provide your credentials to Quadrant by emailing <a href='mailto:hello@quadrant.io'>hello@quadrant.io</a>. Please provide your quadrant user ID or email and the URL of the site that will be making the api requests.</p>
-
-<p>We will provide a client_id and client_secret, this data is required to retrieve an access_token.</p>
-
 <blockquote>
 <p>To request an access token:</p>
 </blockquote>
 <pre><code class="highlight shell"><span class="c"># To request ACCESS_TOKEN</span>
 curl -X POST -d <span class="s2">"client_id=&lt;CLIENT_ID&gt;&amp;client_secret=&lt;CLIENT_SECRET&gt;&amp;grant_type=password&amp;username=&lt;USERNAME&gt;&amp;password=&lt;PASSWORD&gt;"</span> https://quadrant.io/oauth2/access_token/
 </code></pre>
+
+<p>You will first need to provide your credentials to Quadrant by emailing <a href='mailto:hello@quadrant.io'>hello@quadrant.io</a>. Please provide your quadrant user ID or email and the URL of the site that will be making the api requests.</p>
+
+<p>We will provide a client_id and client_secret, this data is required to retrieve an access_token.</p>
 
 <blockquote>
 <p>Returns json string with ACCESS_TOKEN</p>
@@ -107,51 +109,24 @@ You must replace `ACCESS_TOKEN` with your personal token.
 
 <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.</p>
 
-<h1 id="series">Series</h1>
+<h1 id="get-data">Get Data</h1>
 
-<h2 id="get-a-specific-series">Get a Specific Series</h2>
+<h2 id="series-endpoint">Series endpoint</h2>
+
+<blockquote>
+<p>Get data using the <strong>series</strong> endpoint</p>
+</blockquote>
 <pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/series/&lt;slug or id&gt;"</span>
   -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUUR0000SA0L1EPCY"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All items less food and energy (Core CPI)"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"core-cpi-yearly-change"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent (YoY)"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-01"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"series_data_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.16</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-02-01"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.16</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"allow_frequency_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Quarterly"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Semiannual"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Annual"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"aggregate_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVG"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-04T14:30:00Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves the full time series (full historical data) for an indicator.</p>
+<p>The <strong>series</strong> endpoint retrieves the full time series (full historical data) for an indicator.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://quadrant.io/api/v1/series/&lt;SLUG&gt;</code>
-<code class="prettyprint">GET https://quadrant.io/api/v1/series/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/series/&lt;SLUG&gt;</code> or </p>
+
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/series/&lt;ID&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -163,11 +138,11 @@ You must replace `ACCESS_TOKEN` with your personal token.
 </thead><tbody>
 <tr>
 <td>SLUG</td>
-<td>The series slug (example: civilian-unemployment-rate)</td>
+<td>The series slug</td>
 </tr>
 <tr>
 <td>ID</td>
-<td>The ID of the series record (example: LNS14000000)</td>
+<td>The ID of the series record</td>
 </tr>
 </tbody></table>
 
@@ -193,7 +168,7 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 <blockquote>
 <p>Query Multiple Parameters Example</p>
 </blockquote>
-<pre><code class="highlight shell"><span class="c"># Perform unit transformation, set date range, aggregate on quarterly basis using end of period (EOP) observations</span>
+<pre><code class="highlight shell"><span class="c"># Perform unit transformation, set date range begin and end, aggregate on quarterly basis using end of period (EOP) method</span>
 GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class="o">=</span>json&amp;units<span class="o">=</span>pc1&amp;date_range_begin<span class="o">=</span>2010-01-01&amp;date_range_end<span class="o">=</span>2014-12-01&amp;frequency<span class="o">=</span>Quarterly&amp;aggregate_method<span class="o">=</span>SUM
 
 </code></pre>
@@ -207,81 +182,105 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 </tr>
 </thead><tbody>
 <tr>
-<td>units</td>
+<td><strong>units</strong></td>
 <td>base units of series</td>
-<td><strong>valid units:</strong></td>
+<td>valid units:</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>chg</strong> Change from one period prior (one period difference)</td>
+<td><em>chg</em> - Change from one period prior (one period difference)</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>ch1</strong> Change from same period one year ago (one year difference)</td>
+<td><em>ch1</em> - Change from same period one year ago (one year difference)</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>pch</strong> Percent change from one period prior</td>
+<td><em>pch</em> - Percent change from one period prior</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>pc1</strong> Percent change from same period one year ago</td>
+<td><em>pc1</em> - Percent change from same period one year ago</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>pca</strong> Annualized percent change from one period prior</td>
+<td><em>pca</em> - Annualized percent change from one period prior</td>
 <td></td>
 </tr>
 <tr>
-<td>date_range_begin</td>
+<td><strong>date_range_begin</strong></td>
 <td>first available data point</td>
-<td>yyyy-mm-dd format</td>
+<td><em>yyyy-mm-dd</em></td>
 <td></td>
 </tr>
 <tr>
-<td>date_range_end</td>
+<td><strong>date_range_end</strong></td>
 <td>last available datapoint</td>
-<td>yyyy-mm-dd format</td>
+<td><em>yyyy-mm-dd</em></td>
 <td></td>
 </tr>
 <tr>
-<td>frequency</td>
+<td><strong>frequency</strong></td>
 <td>base frequency of series</td>
-<td>valid frequencies: &ldquo;Monthly&rdquo;, &ldquo;Quarterly&rdquo;, &ldquo;Semiannual&rdquo;, &ldquo;Annual&rdquo;</td>
+<td>valid frequencies:</td>
 <td></td>
 </tr>
 <tr>
-<td>aggregate_method</td>
+<td></td>
+<td></td>
+<td><em>Monthly</em></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><em>Quarterly</em></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><em>Semiannual</em></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><em>Annual</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>aggregate_method</strong></td>
 <td>AVG</td>
-<td><strong>valid units:</strong></td>
-<td>frequency</td>
+<td>valid methods:</td>
+<td><strong>frequency</strong></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>AVG</strong> Average</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><strong>SUM</strong> Sum</td>
+<td><em>AVG</em> - Average</td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>EOP</strong> End of Period</td>
+<td><em>SUM</em> - Sum</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><em>EOP</em> - End of Period</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -289,6 +288,86 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 <aside class="success">
 Remember to authenticate!
 </aside>
+
+<blockquote>
+<p>The above commands return JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUUR0000SA0L1EPCY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All items less food and energy (Core CPI)"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"core-cpi-yearly-change"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent (YoY)"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"series_data_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.16</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-02-01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.16</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<h1 id="metadata">Metadata</h1>
+
+<h2 id="series-attributes">Series attributes</h2>
+
+<blockquote>
+<p>Series attributes</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUUR0000SA0L1EPCY"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All items less food and energy (Core CPI)"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"core-cpi-yearly-change"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent (YoY)"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-01"</span><span class="p">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p>Seven series attributes are included for any series retrieved using the <strong>series</strong> endpoint. </p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>series_id</td>
+<td>Unique identifier code</td>
+</tr>
+<tr>
+<td>title</td>
+<td>The name of a series</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>Exact web address for a series (quadrant.io/data/<em>slug</em>)</td>
+</tr>
+<tr>
+<td>units</td>
+<td>Unit of measurement (examples: Billiions of dollars, Percent)</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>How often data is measured (examples: daily, weekly, monthly)</td>
+</tr>
+<tr>
+<td>date_range_begin</td>
+<td>Date of first observation (period measured, not release date)</td>
+</tr>
+<tr>
+<td>date_range_end</td>
+<td>Date of last observation (period measured, not release date)</td>
+</tr>
+</tbody></table>
 
 <h1 id="sge">SGE</h1>
 
