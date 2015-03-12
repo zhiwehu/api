@@ -78,7 +78,8 @@ This access token needs to be passed in every request header:
 You must replace `ACCESS_TOKEN` with your personal token.
 </aside>
 
-All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.
+<aside class="warning">All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.</aside>
+
 
 # Get Data
 
