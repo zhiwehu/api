@@ -26,7 +26,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <div class="quadrant-logo"><img src="images/logo.png" /></div>
+      <img src="images/brand-api.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -146,13 +146,45 @@ You must replace `ACCESS_TOKEN` with your personal token.
 </tr>
 </tbody></table>
 
+<h3 id="format-parameters">Format Parameters</h3>
+
+<aside class="notice">
+Default data format is XML.
+</aside>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>XML</td>
+<td>?format=xml (default)</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>?format=json</td>
+</tr>
+<tr>
+<td>CSV</td>
+<td>?format=csv</td>
+</tr>
+<tr>
+<td>API</td>
+<td>?format=api (test api in browser)</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">GET https://quadrant.io/api/v1/series/&lt;SLUG or ID&gt;/?format=json</code></p>
+
 <h3 id="query-parameters">Query Parameters</h3>
 
 <blockquote>
 <p>Query Parameter Examples</p>
 </blockquote>
 <pre><code class="highlight shell"><span class="c"># Standard request: retrieves the full time series</span>
-GET https://quadrant.io/api/v1/series/LNS14000000
+GET https://quadrant.io/api/v1/series/LNS14000000?format<span class="o">=</span>json
 
 <span class="c"># Perform unit transformation on time series </span>
 GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class="o">=</span>json&amp;units<span class="o">=</span>pch
@@ -177,7 +209,7 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 <tr>
 <th>Parameter</th>
 <th>Default</th>
-<th>Options</th>
+<th>Options (case sensitive)</th>
 <th>Requires</th>
 </tr>
 </thead><tbody>
@@ -295,30 +327,6 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 Remember to authenticate!
 </aside>
 
-<blockquote>
-<p>The above commands return JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUUR0000SA0L1EPCY"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All items less food and energy (Core CPI)"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"core-cpi-yearly-change"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent (YoY)"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-01"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"series_data_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.16</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-02-01"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.16</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
 <h1 id="metadata">Metadata</h1>
 
 <h2 id="series-attributes">Series attributes</h2>
@@ -360,7 +368,7 @@ Remember to authenticate!
 </tr>
 <tr>
 <td>units</td>
-<td>Unit of measurement (examples: Billiions of dollars, Percent)</td>
+<td>Unit of measurement (examples: Billions of dollars, Percent)</td>
 </tr>
 <tr>
 <td>frequency</td>
@@ -677,6 +685,7 @@ This endpoint retrieves series info from a specified country.
 Parameter | Description
 &mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
 COUNTRY_SLUG | String (ex: united-states)
+
 &ndash;>
 
           <h1 id="errors">Errors</h1>
@@ -691,7 +700,7 @@ COUNTRY_SLUG | String (ex: united-states)
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request &ndash; Your request is invalid</td>
 </tr>
 <tr>
 <td>401</td>
@@ -699,31 +708,31 @@ COUNTRY_SLUG | String (ex: united-states)
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; The info requested is hidden for administrators only</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified info could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access info an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>Not Acceptable &ndash; You requested an invalid format</td>
 </tr>
 <tr>
 <td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>Gone &ndash; The info requested has been removed from our servers</td>
 </tr>
 <tr>
 <td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>It&rsquo;s a great day for economics</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too much data! Slown down!</td>
 </tr>
 <tr>
 <td>500</td>
