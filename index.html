@@ -177,19 +177,13 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 <tr>
 <th>Parameter</th>
 <th>Default</th>
-<th>Description</th>
+<th>Options</th>
 <th>Requires</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><strong>units</strong></td>
 <td>base units of series</td>
-<td>valid units:</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
 <td><em>chg</em> - Change from one period prior (one period difference)</td>
 <td></td>
 </tr>
@@ -218,9 +212,21 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 <td></td>
 </tr>
 <tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><strong>date_range_begin</strong></td>
 <td>first available data point</td>
 <td><em>yyyy-mm-dd</em></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -230,14 +236,14 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 <td></td>
 </tr>
 <tr>
-<td><strong>frequency</strong></td>
-<td>base frequency of series</td>
-<td>valid frequencies:</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td><strong>frequency</strong></td>
+<td>base frequency of series</td>
 <td><em>Monthly</em></td>
 <td></td>
 </tr>
@@ -260,16 +266,16 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format<span class=
 <td></td>
 </tr>
 <tr>
-<td><strong>aggregate_method</strong></td>
-<td>AVG</td>
-<td>valid methods:</td>
-<td><strong>frequency</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td><strong>aggregate_method</strong></td>
+<td>AVG</td>
 <td><em>AVG</em> - Average</td>
-<td></td>
+<td><strong>frequency</strong></td>
 </tr>
 <tr>
 <td></td>
@@ -309,8 +315,8 @@ Remember to authenticate!
       </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-02-01"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.16</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-</span><span class="err">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h1 id="metadata">Metadata</h1>
@@ -327,8 +333,9 @@ Remember to authenticate!
   </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent (YoY)"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1958-01-01"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-01"</span><span class="p">,</span><span class="w">
-</span><span class="err">}</span><span class="w">
+  </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-01"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 
 <p>Seven series attributes are included for any series retrieved using the <strong>series</strong> endpoint. </p>
@@ -369,325 +376,312 @@ Remember to authenticate!
 </tr>
 </tbody></table>
 
-<h1 id="sge">SGE</h1>
+<!--
+# SGE
 
-<h2 id=" categories"> Categories</h2>
-<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/get_sge_categories/&lt;country_slug&gt;"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
-</code></pre>
+## Categories
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inflation"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24569</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inflation"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24606</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interest Rates"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24654</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interest Rates"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GDP"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24697</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GDP"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+```shell
+curl "https://quadrant.io/api/v1/get_sge_categories/<country_slug>&ldquo;
+  -H &quot;Authorization: Bearer <auth_token>&rdquo;
+&ldquo;`
 
-</span></code></pre>
+> The above command returns JSON structured like this:
 
-<p>This endpoint retrieves all sge categories.</p>
+&rdquo;`json
+[
+  {
+    &ldquo;shortname&rdquo;: &ldquo;Inflation&rdquo;,
+    &ldquo;children&rdquo;: [],
+    &ldquo;id&rdquo;: 24569,
+    &ldquo;longname&rdquo;: &ldquo;Inflation&rdquo;
+  },
+  {
+    &ldquo;shortname&rdquo;: &ldquo;Employment&rdquo;,
+    &ldquo;children&rdquo;: [],
+    &ldquo;id&rdquo;: 24606,
+    &ldquo;longname&rdquo;: &ldquo;Employment&rdquo;
+  },
+  {
+    &ldquo;shortname&rdquo;: &ldquo;Interest Rates&rdquo;,
+    &ldquo;children&rdquo;: [],
+    &ldquo;id&rdquo;: 24654,
+    &ldquo;longname&rdquo;: &ldquo;Interest Rates&rdquo;
+  },
+  {
+    &ldquo;shortname&rdquo;: &ldquo;GDP&rdquo;,
+    &ldquo;children&rdquo;: [],
+    &ldquo;id&rdquo;: 24697,
+    &ldquo;longname&rdquo;: &ldquo;GDP&rdquo;
+  }
+]
 
-<h3 id="http-request">HTTP Request</h3>
+&ldquo;`
 
-<p><code class="prettyprint">GET https://quadrant.io/api/v1/get_sge_categories/&lt;COUNTRY_SLUG&gt;</code></p>
+This endpoint retrieves all sge categories.
 
-<h3 id="url-parameters">URL Parameters</h3>
+### HTTP Request
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>COUNTRY_SLUG</td>
-<td>ex: united-states</td>
-</tr>
-</tbody></table>
+`GET https://quadrant.io/api/v1/get_sge_categories/<COUNTRY_SLUG>`
 
-<h2 id="category-series">Category Series</h2>
-<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/get_sge_category_series/&lt;category_id&gt;"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
-</code></pre>
+### URL Parameters
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="w">  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sep 12, 2014"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"seasonal_adjustment_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSA"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"percent_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan - Sales Tax Rate"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"seasonal_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"calc_begin_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-01"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 2014"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 2014"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGE_AFGSTR"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan Revenue Department"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"frequency_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(D, N)"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"frequency_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daily"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afghanistan-sales-tax-rate"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"release"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+Parameter | Description
+&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
+COUNTRY_SLUG | ex: united-states
 
-<h3 id="http-request">HTTP Request</h3>
+## Category Series
 
-<p><code class="prettyprint">GET https://quadrant.io/api/v1/get_sge_category_series/&lt;CATEGORY_ID&gt;</code></p>
+&rdquo;`shell
+curl &ldquo;https://quadrant.io/api/v1/get_sge_category_series/<category_id>&rdquo;
+  -H &ldquo;Authorization: Bearer <auth_token>&rdquo;
+&ldquo;`
 
-<h3 id="url-parameters">URL Parameters</h3>
+> The above command returns JSON structured like this:
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>CATEGORY_ID</td>
-<td>ex: 12355</td>
-</tr>
-</tbody></table>
+&rdquo;`json
+  [
+    {
+        &ldquo;last_updated&rdquo;: &ldquo;Sep 12, 2014&rdquo;,
+        &ldquo;seasonal_adjustment_full&rdquo;: &ldquo;NSA&rdquo;,
+        &ldquo;percent_change&rdquo;: &ldquo;5.0&rdquo;,
+        &ldquo;title&rdquo;: &ldquo;Afghanistan - Sales Tax Rate&rdquo;,
+        &ldquo;seasonal_adjustment&rdquo;: &ldquo;N&rdquo;,
+        &ldquo;calc_begin_date&rdquo;: &ldquo;2013-01-01&rdquo;,
+        &ldquo;date_range_begin&rdquo;: &ldquo;Jan 2014&rdquo;,
+        &ldquo;date_range_end&rdquo;: &ldquo;Jan 2014&rdquo;,
+        &ldquo;series_id&rdquo;: &ldquo;SGE_AFGSTR&rdquo;,
+        &ldquo;source&rdquo;: &ldquo;Afghanistan Revenue Department&rdquo;,
+        &ldquo;frequency&rdquo;: &ldquo;D&rdquo;,
+        &ldquo;frequency_adjustment&rdquo;: &ldquo;(D, N)&rdquo;,
+        &ldquo;units&rdquo;: &ldquo;Percent&rdquo;,
+        &ldquo;frequency_full&rdquo;: &ldquo;Daily&rdquo;,
+        &ldquo;last_value&rdquo;: &ldquo;5.0&rdquo;,
+        &ldquo;slug&rdquo;: &ldquo;afghanistan-sales-tax-rate&rdquo;,
+        &ldquo;change&rdquo;: &ldquo;5.0&rdquo;,
+        &ldquo;release&rdquo;: &ldquo;&rdquo;
+    }
+]
+&ldquo;`
 
-<h2 id="countries">Countries</h2>
-<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/api_sge_countries"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
-</code></pre>
+### HTTP Request
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afghanistan"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"Asia"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Asian Development Bank (ADB)"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Executive head of state"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Fragile and conflict affected situations"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Heavily indebted poor countries"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"HIPC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"IDA"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"International Development Association"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Least Developed Countries (LDC)"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Low income"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Presidential System"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Republic"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"South Asia"</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AF"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afghanistan"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"albania"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"Ceremonial head of state"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Europe"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Europe and Central Asia"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"IBRD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"International Bank for Reconstruction and Development"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"NATO"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Parliamentary republic"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Republic"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Upper middle income"</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"iso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AL"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Albania"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+`GET https://quadrant.io/api/v1/get_sge_category_series/<CATEGORY_ID>`
 
-<h3 id="http-request">HTTP Request</h3>
+### URL Parameters
 
-<p><code class="prettyprint">GET https://quadrant.io/api/v1/api_sge_countries</code></p>
+Parameter | Description
+&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
+CATEGORY_ID | ex: 12355
 
-<h2 id=" countries-groups"> Countries Groups</h2>
-<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/api_sge_countries_groups"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
-</code></pre>
+## Countries
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Region"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"Africa"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Asia"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Central America"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Central Europe"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Europe"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Middle East and North Africa"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"North America"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Oceania"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Pacific"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"South America"</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Economy"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"Advanced Economies (IMF)"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Developed Market"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Emerging Market"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Frontier Market"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Least Developed Countries (LDC)"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Small and Vulnerable Economies (SVE)"</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+&rdquo;`shell
+curl &ldquo;https://quadrant.io/api/v1/api_sge_countries&rdquo;
+  -H &ldquo;Authorization: Bearer <auth_token>&rdquo;
+&ldquo;`
 
-<h3 id="http-request">HTTP Request</h3>
+> The above command returns JSON structured like this:
 
-<p><code class="prettyprint">GET https://quadrant.io/api/v1/api_sge_countries_groups</code></p>
+&rdquo;`json
+[
+    {
+        &ldquo;slug&rdquo;: &ldquo;afghanistan&rdquo;,
+        &ldquo;tags&rdquo;: [
+            &ldquo;Asia&rdquo;,
+            &ldquo;Asian Development Bank (ADB)&rdquo;,
+            &ldquo;Executive head of state&rdquo;,
+            &ldquo;Fragile and conflict affected situations&rdquo;,
+            &ldquo;Heavily indebted poor countries&rdquo;,
+            &ldquo;HIPC&rdquo;,
+            &ldquo;IDA&rdquo;,
+            &ldquo;International Development Association&rdquo;,
+            &ldquo;Least Developed Countries (LDC)&rdquo;,
+            &ldquo;Low income&rdquo;,
+            &ldquo;Presidential System&rdquo;,
+            &ldquo;Republic&rdquo;,
+            &ldquo;South Asia&rdquo;
+        ],
+        &ldquo;iso&rdquo;: &ldquo;AF&rdquo;,
+        &ldquo;id&rdquo;: 1,
+        &ldquo;name&rdquo;: &ldquo;Afghanistan&rdquo;
+    },
+    {
+        &ldquo;slug&rdquo;: &ldquo;albania&rdquo;,
+        &ldquo;tags&rdquo;: [
+            &ldquo;Ceremonial head of state&rdquo;,
+            &ldquo;Europe&rdquo;,
+            &ldquo;Europe and Central Asia&rdquo;,
+            &ldquo;IBRD&rdquo;,
+            &ldquo;International Bank for Reconstruction and Development&rdquo;,
+            &ldquo;NATO&rdquo;,
+            &ldquo;Parliamentary republic&rdquo;,
+            &ldquo;Republic&rdquo;,
+            &ldquo;Upper middle income&rdquo;
+        ],
+        &ldquo;iso&rdquo;: &ldquo;AL&rdquo;,
+        &ldquo;id&rdquo;: 2,
+        &ldquo;name&rdquo;: &ldquo;Albania&rdquo;
+    }
+]
+&ldquo;`
 
-<h2 id="country">Country</h2>
-<pre><code class="highlight shell">curl <span class="s2">"https://quadrant.io/api/v1/country/&lt;country_slug&gt;"</span>
-  -H <span class="s2">"Authorization: Bearer &lt;auth_token&gt;"</span>
-</code></pre>
+### HTTP Request
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inflation"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inflation"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Key Indicators"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Key Indicators"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24571</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                            </span><span class="p">{</span><span class="w">
-                                </span><span class="s2">"seasonal_adjustment_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Seasonally Adjusted"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"percent_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"calc_begin_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-11-01"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"seasonal_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All items less food and energy (Core CPI)"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"date_range_begin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 1958"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"date_range_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nov 2014"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"release"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Consumer Price Index"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"series_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUUR0000SA0L1EPCY"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bureau of Labor Statistics"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"frequency_adjustment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(M, N)"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Percent (YoY)"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jan 04, 2015"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"last_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"core-cpi-yearly-change"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7"</span><span class="p">,</span><span class="w">
-                                </span><span class="s2">"frequency_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="w">
-                            </span><span class="p">}</span><span class="w">
-                        </span><span class="p">],</span><span class="w">
-                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core CPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core CPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24572</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PCE Price Index (PCEPI)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PCE Price Index (PCEPI)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24573</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PCEPI"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PCEPI"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24574</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24575</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"longname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core PPI (YoY)"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24576</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24570</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+`GET https://quadrant.io/api/v1/api_sge_countries`
 
-<p>This endpoint retrieves series info from a specified country.</p>
+## Countries Groups
 
-<h3 id="http-request">HTTP Request</h3>
+&rdquo;`shell
+curl &ldquo;https://quadrant.io/api/v1/api_sge_countries_groups&rdquo;
+  -H &ldquo;Authorization: Bearer <auth_token>&rdquo;
+&ldquo;`
 
-<p><code class="prettyprint">GET https://quadrant.io/api/v1/country/&lt;COUNTRY_SLUG&gt;</code></p>
+> The above command returns JSON structured like this:
 
-<h3 id="url-parameters">URL Parameters</h3>
+&rdquo;`json
+[
+    {
+        &ldquo;name&rdquo;: &ldquo;Region&rdquo;,
+        &ldquo;tags&rdquo;: [
+            &ldquo;Africa&rdquo;,
+            &ldquo;Asia&rdquo;,
+            &ldquo;Australia&rdquo;,
+            &ldquo;Central America&rdquo;,
+            &ldquo;Central Europe&rdquo;,
+            &ldquo;Europe&rdquo;,
+            &ldquo;Middle East and North Africa&rdquo;,
+            &ldquo;North America&rdquo;,
+            &ldquo;Oceania&rdquo;,
+            &ldquo;Pacific&rdquo;,
+            &ldquo;South America&rdquo;
+        ]
+    },
+    {
+        &ldquo;name&rdquo;: &ldquo;Economy&rdquo;,
+        &ldquo;tags&rdquo;: [
+            &ldquo;Advanced Economies (IMF)&rdquo;,
+            &ldquo;Developed Market&rdquo;,
+            &ldquo;Emerging Market&rdquo;,
+            &ldquo;Frontier Market&rdquo;,
+            &ldquo;Least Developed Countries (LDC)&rdquo;,
+            &ldquo;Small and Vulnerable Economies (SVE)&rdquo;
+        ]
+    }
+]
+&ldquo;`
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>COUNTRY_SLUG</td>
-<td>String (ex: united-states)</td>
-</tr>
-</tbody></table>
+### HTTP Request
+
+`GET https://quadrant.io/api/v1/api_sge_countries_groups`
+
+## Country
+
+&rdquo;`shell
+curl &ldquo;https://quadrant.io/api/v1/country/<country_slug>&rdquo;
+  -H &ldquo;Authorization: Bearer <auth_token>&rdquo;
+&ldquo;`
+
+> The above command returns JSON structured like this:
+
+
+&rdquo;`json
+[
+    {
+        &ldquo;shortname&rdquo;: &ldquo;Inflation&rdquo;,
+        &ldquo;longname&rdquo;: &ldquo;Inflation&rdquo;,
+        &ldquo;children&rdquo;: [
+            {
+                &ldquo;shortname&rdquo;: &ldquo;Key Indicators&rdquo;,
+                &ldquo;longname&rdquo;: &ldquo;Key Indicators&rdquo;,
+                &ldquo;children&rdquo;: [
+                    {
+                        &ldquo;series&rdquo;: [],
+                        &ldquo;shortname&rdquo;: &ldquo;CPI (YoY)&rdquo;,
+                        &ldquo;longname&rdquo;: &ldquo;CPI (YoY)&rdquo;,
+                        &ldquo;children&rdquo;: [],
+                        &ldquo;id&rdquo;: 24571
+                    },
+                    {
+                        &ldquo;series&rdquo;: [
+                            {
+                                &ldquo;seasonal_adjustment_full&rdquo;: &ldquo;Not Seasonally Adjusted&rdquo;,
+                                &ldquo;percent_change&rdquo;: &ldquo;1.7&rdquo;,
+                                &ldquo;calc_begin_date&rdquo;: &ldquo;2013-11-01&rdquo;,
+                                &ldquo;seasonal_adjustment&rdquo;: &ldquo;N&rdquo;,
+                                &ldquo;title&rdquo;: &ldquo;All items less food and energy (Core CPI)&rdquo;,
+                                &ldquo;date_range_begin&rdquo;: &ldquo;Jan 1958&rdquo;,
+                                &ldquo;date_range_end&rdquo;: &ldquo;Nov 2014&rdquo;,
+                                &ldquo;release&rdquo;: &ldquo;Consumer Price Index&rdquo;,
+                                &ldquo;series_id&rdquo;: &ldquo;CUUR0000SA0L1EPCY&rdquo;,
+                                &ldquo;source&rdquo;: &ldquo;Bureau of Labor Statistics&rdquo;,
+                                &ldquo;frequency&rdquo;: &ldquo;M&rdquo;,
+                                &ldquo;frequency_adjustment&rdquo;: &ldquo;(M, N)&rdquo;,
+                                &ldquo;units&rdquo;: &ldquo;Percent (YoY)&rdquo;,
+                                &ldquo;last_updated&rdquo;: &ldquo;Jan 04, 2015&rdquo;,
+                                &ldquo;last_value&rdquo;: &ldquo;1.7&rdquo;,
+                                &ldquo;slug&rdquo;: &ldquo;core-cpi-yearly-change&rdquo;,
+                                &ldquo;change&rdquo;: &ldquo;1.7&rdquo;,
+                                &ldquo;frequency_full&rdquo;: &ldquo;Monthly&rdquo;
+                            }
+                        ],
+                        &ldquo;shortname&rdquo;: &ldquo;Core CPI (YoY)&rdquo;,
+                        &ldquo;longname&rdquo;: &ldquo;Core CPI (YoY)&rdquo;,
+                        &ldquo;children&rdquo;: [],
+                        &ldquo;id&rdquo;: 24572
+                    },
+                    {
+                        &ldquo;series&rdquo;: [],
+                        &ldquo;shortname&rdquo;: &ldquo;PCE Price Index (PCEPI)&rdquo;,
+                        &ldquo;longname&rdquo;: &ldquo;PCE Price Index (PCEPI)&rdquo;,
+                        &ldquo;children&rdquo;: [],
+                        &ldquo;id&rdquo;: 24573
+                    },
+                    {
+                        &ldquo;series&rdquo;: [],
+                        &ldquo;shortname&rdquo;: &ldquo;Core PCEPI&rdquo;,
+                        &ldquo;longname&rdquo;: &ldquo;Core PCEPI&rdquo;,
+                        &ldquo;children&rdquo;: [],
+                        &ldquo;id&rdquo;: 24574
+                    },
+                    {
+                        &ldquo;series&rdquo;: [],
+                        &ldquo;shortname&rdquo;: &ldquo;PPI (YoY)&rdquo;,
+                        &ldquo;longname&rdquo;: &ldquo;PPI (YoY)&rdquo;,
+                        &ldquo;children&rdquo;: [],
+                        &ldquo;id&rdquo;: 24575
+                    },
+                    {
+                        &ldquo;series&rdquo;: [],
+                        &ldquo;shortname&rdquo;: &ldquo;Core PPI (YoY)&rdquo;,
+                        &ldquo;longname&rdquo;: &ldquo;Core PPI (YoY)&rdquo;,
+                        &ldquo;children&rdquo;: [],
+                        &ldquo;id&rdquo;: 24576
+                    }
+                ],
+                &ldquo;id&rdquo;: 24570
+            }
+        ]
+    }
+]
+&ldquo;`
+
+This endpoint retrieves series info from a specified country.
+
+### HTTP Request
+
+`GET https://quadrant.io/api/v1/country/<COUNTRY_SLUG>`
+
+### URL Parameters
+
+Parameter | Description
+&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
+COUNTRY_SLUG | String (ex: united-states)
+&ndash;>
 
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The Quadrant API uses the following error codes:</p>
 
 <table><thead>
 <tr>
