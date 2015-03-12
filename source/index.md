@@ -1,5 +1,5 @@
 ---
-title: Quadrant API Reference
+title: Quadrant API Documentation
 
 language_tabs:
   - shell
