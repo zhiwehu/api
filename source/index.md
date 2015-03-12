@@ -133,7 +133,7 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=
 
 ```
 
-Parameter | Default | Options | Requires
+Parameter | Default | Options (case sensitive) | Requires
 --------- | ------- | ----------- | -------
 **units** | base units of series | *chg* - Change from one period prior (one period difference) | 
  | | *ch1* - Change from same period one year ago (one year difference) | 
