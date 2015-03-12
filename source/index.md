@@ -106,13 +106,28 @@ Parameter | Description
 SLUG | The series slug 
 ID  | The ID of the series record
 
+### Format Parameters
+
+<aside class="notice">
+Default data format is XML.
+</aside>
+
+Parameter | Description
+--------- | -----------
+XML  | ?format=xml (default)
+JSON | ?format=json 
+CSV  | ?format=csv
+API  | ?format=api (test api in browser)
+
+`GET https://quadrant.io/api/v1/series/<SLUG or ID>/?format=json`
+
 ### Query Parameters
 
 > Query Parameter Examples
 
 ```shell
 # Standard request: retrieves the full time series
-GET https://quadrant.io/api/v1/series/LNS14000000
+GET https://quadrant.io/api/v1/series/LNS14000000?format=json
 
 # Perform unit transformation on time series 
 GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=pch
@@ -133,7 +148,7 @@ GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=
 
 ```
 
-Parameter | Default | Options | Requires
+Parameter | Default | Options (case sensitive) | Requires
 --------- | ------- | ----------- | -------
 **units** | base units of series | *chg* - Change from one period prior (one period difference) | 
  | | *ch1* - Change from same period one year ago (one year difference) | 
@@ -158,29 +173,6 @@ Parameter | Default | Options | Requires
 Remember to authenticate!
 </aside>
 
-> The above commands return JSON structured like this:
-
-```json
-{
-  "series_id": "CUUR0000SA0L1EPCY",
-  "title": "All items less food and energy (Core CPI)",
-  "slug": "core-cpi-yearly-change",
-  "units": "Percent (YoY)",
-  "frequency": "Monthly",
-  "date_range_begin": "1958-01-01",
-  "date_range_end": "2014-11-01",
-  "series_data_list": [
-    {
-      "date": "1958-01-01",
-      "value": 3.16
-    },
-    {
-      "date": "1958-02-01",
-      "value": 3.16
-    }
-  ]
-}
-```
 
 # Metadata
 ## Series attributes
@@ -207,7 +199,7 @@ Attribute | Description
 series_id | Unique identifier code
 title | The name of a series
 slug | Exact web address for a series (quadrant.io/data/*slug*)
-units | Unit of measurement (examples: Billiions of dollars, Percent)
+units | Unit of measurement (examples: Billions of dollars, Percent)
 frequency | How often data is measured (examples: daily, weekly, monthly)
 date_range_begin | Date of first observation (period measured, not release date)
 date_range_end | Date of last observation (period measured, not release date)
@@ -513,4 +505,5 @@ This endpoint retrieves series info from a specified country.
 Parameter | Description
 --------- | -----------
 COUNTRY_SLUG | String (ex: united-states)
+
 -->
