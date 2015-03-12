@@ -106,13 +106,28 @@ Parameter | Description
 SLUG | The series slug 
 ID  | The ID of the series record
 
+### Format Parameters
+
+<aside class="notice">
+Default data format is XML.
+</aside>
+
+Parameter | Description
+--------- | -----------
+XML  | ?format=xml (default)
+JSON | ?format=json 
+CSV  | ?format=csv
+API  | ?format=api (test api in browser)
+
+`GET https://quadrant.io/api/v1/series/<SLUG or ID>/?format=json`
+
 ### Query Parameters
 
 > Query Parameter Examples
 
 ```shell
 # Standard request: retrieves the full time series
-GET https://quadrant.io/api/v1/series/LNS14000000
+GET https://quadrant.io/api/v1/series/LNS14000000?format=json
 
 # Perform unit transformation on time series 
 GET https://quadrant.io/api/v1/series/core-cpi-yearly-change/?format=json&units=pch
@@ -158,29 +173,6 @@ Parameter | Default | Options (case sensitive) | Requires
 Remember to authenticate!
 </aside>
 
-> The above commands return JSON structured like this:
-
-```json
-{
-  "series_id": "CUUR0000SA0L1EPCY",
-  "title": "All items less food and energy (Core CPI)",
-  "slug": "core-cpi-yearly-change",
-  "units": "Percent (YoY)",
-  "frequency": "Monthly",
-  "date_range_begin": "1958-01-01",
-  "date_range_end": "2014-11-01",
-  "series_data_list": [
-    {
-      "date": "1958-01-01",
-      "value": 3.16
-    },
-    {
-      "date": "1958-02-01",
-      "value": 3.16
-    }
-  ]
-}
-```
 
 # Metadata
 ## Series attributes
@@ -513,4 +505,5 @@ This endpoint retrieves series info from a specified country.
 Parameter | Description
 --------- | -----------
 COUNTRY_SLUG | String (ex: united-states)
+
 -->
